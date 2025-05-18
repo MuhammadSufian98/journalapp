@@ -7,6 +7,7 @@ import Header from "@/app/components/Header-Footer/Header";
 import { useAppContext } from "../../Context";
 
 export default function Dashboard() {
+  const router = useRouter();
   const { role } = useParams();
   const { setRole } = useAppContext();
 
@@ -32,7 +33,13 @@ export default function Dashboard() {
             <h1 className="Heading">Entries:</h1>
           </div>
           <div className="Container">
-            <div className="EntriesPreview" >
+            <div
+              className="EntriesPreview"
+              onClick={() => {
+                const role = localStorage.getItem("role");
+                router.push(`/${role}/timeline`);
+              }}
+            >
               {entries.length === 0 ? (
                 <p>Empty</p>
               ) : (
@@ -47,15 +54,19 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {entries.length > 1 && (
-                    <p className="More">
-                      ...and more
-                    </p>
-                  )}
+                  {entries.length > 1 && <p className="More">...and more</p>}
                 </>
               )}
             </div>
-            <div className="EntryButton"></div>
+            <button
+              className="EntryButton"
+              onClick={() => {
+                const role = localStorage.getItem("role");
+                router.push(`/${role}/newEntry`);
+              }}
+            >
+              Create
+            </button>
           </div>
           <div>
             <h1 className="ContainerHeading">Audio Transcript:</h1>
