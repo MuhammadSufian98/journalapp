@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/app/components/Header-Footer/Header";
-import AudioRecorder from "@/app/components/Entries/AudioRecord";
+import AudioTranscriptComponent from "@/app/components/Entries/AudioRecord";
 
 export default function AudioEntry() {
   return (
@@ -11,16 +11,17 @@ export default function AudioEntry() {
         style={{
           width: "100%",
           height: "100vh",
+          marginTop: "50px",
           backgroundColor: "white",
           position: "relative",
           borderTopLeftRadius: "20px",
           borderTopRightRadius: "20px",
           opacity: 0.6,
-          zIndex: 5,
+          zIndex: 7,
         }}
       >
         <div className="titleDiv">
-          <AudioRecorder />
+          <AudioTranscriptComponent />
         </div>
       </div>
     </div>

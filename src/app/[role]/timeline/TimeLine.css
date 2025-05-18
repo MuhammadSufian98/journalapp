@@ -10,9 +10,11 @@
   margin: 0;
 }
 .titleDiv {
+  padding-top: 50px;
   width: 100%;
   height: 100px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -22,41 +24,30 @@
   line-height: 36px;
   color: #3a3c3e;
 }
-.entries-container {
-  height: 440px;
-  overflow-y: auto;
-  padding: 10px;
-}
-.Entry {
-  padding-bottom: 30px;
-}
-.EntryInnerDiv {
+.ButtonsDiv {
   display: flex;
-  justify-content: space-around;
+  gap: 20px;
 }
-.ActualEntry {
-  padding: 10px;
-}
-.BTNDiv {
-  display: flex;
-  justify-content: center;
-}
-.DelBTN {
+.buttons {
   width: 100px;
-  height: 30px;
-  border: 1px solid #3a3c3e;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19.999px;
-  color: rgb(250, 94, 85);
-  transition: background-color 0.3s ease;
+  height: 50px;
+  position: relative;
+  border: none;
+  background-color: transparent;
 }
-.DelBTN:hover {
-  color: aliceblue;
-  background-color: #b62324;
+
+.buttons::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: #3b3b3b;
+  transition: width 0.4s ease, left 0.4s ease;
 }
-.divider{
-    width: 100%;
+
+.buttons:hover::after {
+  width: 100px;
+  left: 0;
 }
