@@ -45,7 +45,7 @@ export default function AudioTranscriptComponent() {
       recognition.onresult = (event) => {
         const spokenText = event.results[0][0].transcript;
         setTempTranscript(spokenText);
-        setShowModal(true); // show modal instead of prompt
+        setShowModal(true);
       };
 
       recognition.onerror = () => {

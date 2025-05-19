@@ -23,23 +23,18 @@ export default function NewEntry() {
   const handleSave = () => {
     const now = new Date();
 
-    setContent((prev) => {
-      const newEntry = {
-        html: editor.getHTML(),
-        title: TitleEditor.getHTML(),
-        time: now.toLocaleTimeString(),
-        date: now.toLocaleDateString(),
-      };
+    const newEntry = {
+      html: editor.getHTML(),
+      title: TitleEditor.getHTML(),
+      time: now.toLocaleTimeString(),
+      date: now.toLocaleDateString(),
+    };
 
-      const updatedHtml = [newEntry, ...prev.html];
+    const savedEntries = JSON.parse(localStorage.getItem("entries") || "[]");
+    const updatedEntries = [newEntry, ...savedEntries];
 
-      localStorage.setItem("entries", JSON.stringify(updatedHtml));
-      toast.success("Entry saved successfully!");
-      return {
-        ...prev,
-        html: updatedHtml,
-      };
-    });
+    localStorage.setItem("entries", JSON.stringify(updatedEntries));
+    toast.success("Entry saved successfully!");
   };
 
   return (

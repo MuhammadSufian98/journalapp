@@ -1,11 +1,9 @@
-"use client";
-
 import { AppContextProvider } from "./Context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
-  title: "Journal lite",
+  title: "Journal",
 };
 
 export default function RootLayout({ children }) {
