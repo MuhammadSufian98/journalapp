@@ -1,14 +1,20 @@
 "use client";
 
 import "./timeLine.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Header from "@/app/components/Header-Footer/Header";
 import TextEntry from "@/app/components/SavedEntry/TextEntry";
 import AudioTranscript from "@/app/components/SavedEntry/AudioTranscript";
 
 export default function TimeLine() {
+  const searchParams = useSearchParams();
+  const ToogleFlag = searchParams.get("audio") === "false";
   const [toggle, setToggle] = useState(false);
 
+  useEffect(() => {
+    setToggle(ToogleFlag); // auto-trigger based on query param
+  }, [ToogleFlag]);
   return (
     <div>
       <Header />

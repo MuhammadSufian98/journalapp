@@ -1,6 +1,8 @@
 "use client";
 
 import "./dashboard.css";
+import Image from "next/image";
+import myPhoto from "../../../../public/plus.png";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Header from "@/app/components/Header-Footer/Header";
@@ -12,9 +14,13 @@ export default function Dashboard() {
   const { setRole } = useAppContext();
 
   const [entries, setEntries] = useState([]);
+  const [audioEntries, setAudioEntries] = useState([]);
+
   useEffect(() => {
     const savedEntries = JSON.parse(localStorage.getItem("entries")) || [];
     setEntries(savedEntries);
+    const audioEntries = JSON.parse(localStorage.getItem("audio")) || [];
+    setAudioEntries(audioEntries);
   }, []);
 
   useEffect(() => {
@@ -28,54 +34,112 @@ export default function Dashboard() {
         <div className="titleDiv">
           <h1 className="Heading">Welcome, {role}</h1>
         </div>
-        <div className="dashboard-content">
-          <div>
-            <h1 className="Heading">Entries:</h1>
-          </div>
-          <div className="Container">
+        <div className="Container">
+          {role === "coach" ? (
             <div
-              className="EntriesPreview"
+              className="TraineeData Border"
               onClick={() => {
-                const role = localStorage.getItem("role");
-                router.push(`/${role}/timeline`);
+                router.push(`/${role}/traineeData`);
               }}
             >
-              {entries.length === 0 ? (
-                <p>Empty</p>
-              ) : (
-                <>
-                  <div className="Entry">
-                    <div className="EntryInnerDiv">
-                      <div className="ActualEntry">
-                        <div
-                          dangerouslySetInnerHTML={{ __html: entries[0].html }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {entries.length > 1 && <p className="More">...and more</p>}
-                </>
-              )}
+              <h1 className="Heading">All Trainee Data</h1>
             </div>
-            <button
-              className="EntryButton"
-              onClick={() => {
-                const role = localStorage.getItem("role");
-                router.push(`/${role}/newEntry`);
-              }}
-            >
-              Create
-            </button>
+          ) : (
+            <div></div>
+          )}
+        </div>
+        <div className="dashboard-content">
+          <div className="EntriesDiv">
+            <div className="HeadingDiv">
+              <h1 className="Heading">Entries:</h1>
+            </div>
+            <div className="Container">
+              <div
+                className="EntriesPreview"
+                onClick={() => {
+                  const role = localStorage.getItem("role");
+                  router.push(`/${role}/timeline`);
+                }}
+              >
+                {entries.length === 0 ? (
+                  <p>Empty</p>
+                ) : (
+                  <div className="EntriesList">
+                    {entries.map((entry, index) => (
+                      <div key={index} className="Entry">
+                        <div className="EntryContent">
+                          <span style={{ marginRight: "8px" }}>•</span>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: entry.title }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    {entries.length > 1 && <p className="More">...and more</p>}
+                  </div>
+                )}
+              </div>
+              <div className="BTNdiv">
+                <button
+                  className="EntryButton"
+                  onClick={() => {
+                    const role = localStorage.getItem("role");
+                    router.push(`/${role}/newEntry`);
+                  }}
+                >
+                  Create
+                  <Image src={myPhoto} alt="My Image" width={15} />
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <h1 className="ContainerHeading">Audio Transcript:</h1>
+          <div className="EntriesDiv">
+            <div className="HeadingDiv">
+              <h1 className="ContainerHeading">Audio Transcript:</h1>
+            </div>
+            <div className="Container">
+              <div
+                className="EntriesPreview"
+                onClick={() => {
+                  const role = localStorage.getItem("role");
+                  router.push(`/${role}/timeline`);
+                }}
+              >
+                {audioEntries.length === 0 ? (
+                  <p>Empty</p>
+                ) : (
+                  <div className="EntriesList">
+                    {audioEntries.map((entry, index) => (
+                      <div key={index} className="Entry">
+                        <div className="EntryContent">
+                          <span style={{ marginRight: "8px" }}>•</span>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: entry.title }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    {audioEntries.length > 1 && (
+                      <p className="More">...and more</p>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="BTNdiv">
+                <button
+                  className="EntryButton"
+                  onClick={() => {
+                    const role = localStorage.getItem("role");
+                    const toggle = true;
+                    router.push(`/${role}/audioEntry?audio=${toggle}`);
+                  }}
+                >
+                  Create
+                  <Image src={myPhoto} alt="My Image" width={15} />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="Container flexDirectionReverse">
-            <div className="EntriesPreview"></div>
-            <div className="EntryButton"></div>
-          </div>
-          <div className="Container Border">Container3</div>
         </div>
       </div>
     </div>

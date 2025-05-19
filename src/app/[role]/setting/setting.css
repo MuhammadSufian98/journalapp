@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Outfit";
+  src: url("../../../../public/font/Outfit-VariableFont_wght.ttf") format("ttf");
+}
+
+* {
+  font-family: "Outfit", sans-serif;
+  margin: 0;
+}
+.wrapper {
+  min-height: 100%;
+  min-width: 700px;
+  z-index: 7;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  opacity: 0.6;
+  background-color: white;
+  position: relative;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 7;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ChangeNameTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  color: #000000;
+}
+.inputDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.input {
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+.input::placeholder {
+  color: rgb(58, 58, 58);
+}
+.input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+  text-decoration: none;
+  border-radius: 25px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #b5ada9;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #c8d4da;
+}
+.PopupHeadingCancelDiv {
+  display: flex;
+}
+.closeBtn {
+  padding-left: 20px;
+  padding-bottom: 30px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #444;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #000;
+}
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.popupBox {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}

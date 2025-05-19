@@ -1,11 +1,18 @@
 "use client";
 import "./header.css";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "../../Context";
 
 export default function Header() {
   const router = useRouter();
   const { setRole, name, setName } = useAppContext();
+  const [getName, setGetName] = useState("");
+
+  useEffect(() => {
+    const name = localStorage.getItem("name");
+    setGetName(name);
+  }, []);
 
   const handleRoutes = (path) => {
     const role = localStorage.getItem("role");
@@ -15,6 +22,7 @@ export default function Header() {
     setRole("");
     setName("");
     localStorage.removeItem("role");
+    localStorage.removeItem("name");
     router.push(`/`);
   };
 
@@ -26,6 +34,11 @@ export default function Header() {
         <div className="blob" />
       </div>
       <div className=" animated-bg">
+        <div>
+          <h1 onClick={() => handleRoutes("dashboard")} className="logoHeading">
+            Journal
+          </h1>
+        </div>
         <div className="LinksDiv">
           <div className="DividedLinksDiv">
             <button onClick={() => handleRoutes("dashboard")} className="Links">
@@ -34,20 +47,14 @@ export default function Header() {
             <button onClick={() => handleRoutes("newEntry")} className="Links">
               New Entry
             </button>
-            <button onClick={() => handleRoutes("timeline")} className="Links">
-              Time Line
-            </button>
-          </div>
-          <div className="HeadingDiv">
-            <h1 className="title">Welcome,</h1>
-            <h1 className="title">{name}</h1>
-          </div>
-          <div className="DividedLinksDiv">
             <button
               onClick={() => handleRoutes("audioEntry")}
               className="Links"
             >
               Audio
+            </button>
+            <button onClick={() => handleRoutes("timeline")} className="Links">
+              Time Line
             </button>
             <button onClick={() => handleRoutes("setting")} className="Links">
               Setting

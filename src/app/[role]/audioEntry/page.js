@@ -5,22 +5,10 @@ import AudioTranscriptComponent from "@/app/components/Entries/AudioRecord";
 
 export default function AudioEntry() {
   return (
-    <div>
+    <div style={wrapperStyle}>
       <Header />
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          marginTop: "50px",
-          backgroundColor: "white",
-          position: "relative",
-          borderTopLeftRadius: "20px",
-          borderTopRightRadius: "20px",
-          opacity: 0.6,
-          zIndex: 7,
-        }}
-      >
-        <div className="titleDiv">
+      <div style={panelStyle}>
+        <div style={contentStyle}>
           <AudioTranscriptComponent />
         </div>
       </div>
@@ -28,13 +16,27 @@ export default function AudioEntry() {
   );
 }
 
-const buttonStyle = {
-  padding: "12px 24px",
-  fontSize: "1rem",
-  cursor: "pointer",
-  borderRadius: "6px",
-  border: "none",
-  backgroundColor: "#1f2937",
-  color: "#fff",
-  width: "200px",
+const wrapperStyle = {
+  minHeight: "100vh",
+  zIndex: 7,
+};
+
+const panelStyle = {
+  opacity: 0.6,
+  backgroundColor: "white",
+  position: "relative",
+  top: 0,
+  width: "100%",
+  minHeight: "100vh",
+  backgroundColor: "white",
+  borderTopLeftRadius: "20px",
+  borderTopRightRadius: "20px",
+  zIndex: 7,
+  padding: "2rem",
+  boxSizing: "border-box",
+};
+
+const contentStyle = {
+  width: "100%",
+  height: "100%",
 };

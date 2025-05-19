@@ -59,15 +59,22 @@
 
 .animated-bg {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   height: 100px;
-  width: 100%;
+  width: 93%;
   z-index: 2;
+  padding-left: 40px;
+  padding-right: 40px;
 }
-
+.logoHeading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  color: #dde5ed;
+  cursor: pointer;
+}
 .LinksDiv {
   display: flex;
   flex-direction: row;
@@ -85,17 +92,44 @@
 }
 
 .Links {
+  position: relative; /* Needed for positioning pseudo-elements */
   text-decoration: none;
   border-radius: 25px;
   padding: 10px;
   border: none;
   cursor: pointer;
-  background-color: #b5ada9;
-  transition: background-color 0.3s ease;
+  background-color: transparent;
+  color: #f1f5f9;
+  overflow: hidden; /* Optional: to clip pseudo-elements if needed */
 }
 
-.Links:hover {
-  background-color: #4d96ff;
+/* BEFORE pseudo-element: example - a subtle top border */
+.Links::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+}
+
+/* AFTER pseudo-element: current underline animation */
+.Links::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: #f1f5f9;
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.Links:hover::after {
+  width: 100px;
+  left: 0;
 }
 .HeadingDiv {
   display: flex;

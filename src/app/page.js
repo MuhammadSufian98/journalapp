@@ -40,6 +40,7 @@ export default function Home() {
               onClick={() => {
                 handleLogin("coach");
                 localStorage.setItem("role", "coach");
+                localStorage.setItem("name", name);
               }}
             >
               Login as Coach
@@ -50,6 +51,7 @@ export default function Home() {
               onClick={() => {
                 handleLogin("trainee");
                 localStorage.setItem("role", "trainee");
+                localStorage.setItem("name", name);
               }}
             >
               Login as Trainee

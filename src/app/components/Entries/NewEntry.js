@@ -14,19 +14,24 @@ export default function NewEntry() {
     content: "Type Something Amazing",
     immediatelyRender: false,
   });
+  const TitleEditor = useEditor({
+    extensions: [StarterKit],
+    content: "Enter Title",
+    immediatelyRender: false,
+  });
 
   const handleSave = () => {
-    const html = editor.getHTML();
     const now = new Date();
 
     setContent((prev) => {
       const newEntry = {
-        html,
+        html: editor.getHTML(),
+        title: TitleEditor.getHTML(),
         time: now.toLocaleTimeString(),
         date: now.toLocaleDateString(),
       };
 
-      const updatedHtml = [...prev.html, newEntry];
+      const updatedHtml = [newEntry, ...prev.html];
 
       localStorage.setItem("entries", JSON.stringify(updatedHtml));
       toast.success("Entry saved successfully!");
@@ -96,13 +101,32 @@ export default function NewEntry() {
             H3
           </button>
         </div>
-        <div style={{ maxWidth: "600px", margin: "auto", paddingTop: "40px" }}>
+        <div
+          style={{
+            maxWidth: "600px",
+            margin: "auto",
+            paddingTop: "40px",
+            gap: "20px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <EditorContent
+            editor={TitleEditor}
+            style={{
+              border: "2px solid #ccc",
+              borderRadius: "10px",
+              padding: "10px",
+              width: "100px",
+            }}
+          />
           <EditorContent
             editor={editor}
             style={{
-              border: "1px solid #ccc",
-              borderRadius: "4px",
+              border: "2px solid #ccc",
+              borderRadius: "10px",
               padding: "10px",
+              width: "600px",
             }}
           />
           <div className="SaveBTN">
